@@ -159,13 +159,13 @@ p{margin:0 0 1.1em}
 .hero{position:relative;background:var(--brand-900);color:#fff;overflow:hidden;isolation:isolate}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:-2;
-  background:url("../img/hero.svg") center/cover no-repeat;opacity:.55;
+  background:url("../img/pupil.jpg") right center/cover no-repeat;opacity:1;
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:-1;
   background:
-    radial-gradient(900px 460px at 78% 12%, rgba(240,135,58,.28), transparent 62%),
-    linear-gradient(105deg, rgba(10,61,32,.96) 8%, rgba(15,92,46,.84) 46%, rgba(23,164,76,.6) 100%);
+    radial-gradient(900px 460px at 78% 12%, rgba(240,135,58,.16), transparent 62%),
+    linear-gradient(100deg, rgba(8,48,25,.94) 0%, rgba(10,61,32,.86) 34%, rgba(12,74,38,.44) 64%, rgba(14,90,46,.26) 100%);
 }
 .hero .wrap{position:relative;padding-block:clamp(34px,4.5vw,60px)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(30px,5vw,64px);align-items:center}
@@ -179,8 +179,8 @@ p{margin:0 0 1.1em}
 }
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold-300);box-shadow:0 0 0 4px rgba(255,169,106,.22)}
 .hero-card{
-  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);
-  border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);backdrop-filter:blur(8px);
+  background:rgba(8,48,25,.58);border:1px solid rgba(255,255,255,.24);
+  border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);backdrop-filter:blur(10px);
 }
 .hero-card h3{color:#fff;font-size:1.25rem;margin-bottom:6px}
 .hero-card p{font-size:.95rem;color:#c6e3d2}
@@ -194,10 +194,10 @@ p{margin:0 0 1.1em}
 
 /* ---------- Page hero (interior) ---------- */
 .page-hero{position:relative;background:var(--brand-800);color:#fff;isolation:isolate;overflow:hidden}
-.page-hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--bgimg,url("../img/campus.svg"));background-size:cover;background-position:center;opacity:.42}
-.page-hero--graduation::before{background-image:url("../img/graduation.svg")}
-.page-hero--welcome::before{background-image:url("../img/welcome.svg")}
-.page-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(10,61,32,.95),rgba(20,122,61,.74))}
+.page-hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--bgimg,url("../img/poster.jpg"));background-size:cover;background-position:center;opacity:1}
+.page-hero--graduation::before{background-image:url("../img/poster.jpg")}
+.page-hero--welcome::before{background-image:url("../img/bus.jpg")}
+.page-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(8,48,25,.93) 0%,rgba(12,74,38,.74) 58%,rgba(14,90,46,.36) 100%)}
 .page-hero .wrap{padding-block:clamp(26px,3.4vw,44px)}
 .page-hero h1{color:#fff;margin-bottom:12px}
 .page-hero p{color:#d1ead9;max-width:62ch;margin-bottom:0;font-size:1.06rem}
@@ -315,8 +315,8 @@ p{margin:0 0 1.1em}
 
 /* ---------- CTA band ---------- */
 .cta{position:relative;background:var(--brand-900);color:#fff;isolation:isolate;overflow:hidden}
-.cta::before{content:"";position:absolute;inset:0;z-index:-2;background:url("../img/graduation.svg") center/cover no-repeat;opacity:.4}
-.cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(10,61,32,.94),rgba(23,164,76,.72))}
+.cta::before{content:"";position:absolute;inset:0;z-index:-2;background:url("../img/bus.jpg") center 38%/cover no-repeat;opacity:1}
+.cta::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(8,48,25,.86),rgba(12,88,44,.7))}
 .cta .wrap{padding-block:clamp(30px,3.6vw,48px);position:relative}
 .cta h2{color:#fff}
 .cta p{color:#d4ecdf;max-width:60ch;margin-inline:auto}
@@ -366,16 +366,72 @@ td b{color:var(--ink)}
 }
 .filter:hover{border-color:var(--brand-300);color:var(--brand-700)}
 .filter.active{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 8px 20px -12px rgba(23,164,76,.9)}
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:9px}
-.gal figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;cursor:zoom-in;box-shadow:var(--shadow-sm);background:var(--brand-800)}
-.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.3,1),opacity .3s}
-.gal figure:hover img{transform:scale(1.08);opacity:.82}
-.gal figcaption{
-  position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;color:#fff;font-size:.92rem;font-weight:600;
-  background:linear-gradient(transparent,rgba(10,61,32,.9));transform:translateY(6px);opacity:0;transition:.3s;
+/* ---------- Gallery ----------
+   A curated mosaic. The school's photographs and its printed posters are
+   different things, so they are shown differently: photographs are cropped
+   to fill their cell, posters are shown whole on the school's green.
+   To add a photograph, give the figure a name in .gal's grid-template-areas
+   (or leave it unnamed — it will flow into a new row on its own).           */
+.gal-note{
+  display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;
+  padding:11px 15px;border-radius:var(--r);background:var(--brand-100);
+  font-size:.86rem;line-height:1.5;color:var(--brand-800);
 }
-.gal figure:hover figcaption{transform:none;opacity:1}
+.gal-note .ico{flex:none;font-size:.98rem;line-height:1.4}
+
+.gal{
+  display:grid;gap:11px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-auto-rows:200px;
+  grid-template-areas:
+    "pupil bus    bus  "
+    "pupil poster brand";
+}
+.gal figure{
+  margin:0;position:relative;border-radius:var(--r);overflow:hidden;cursor:zoom-in;
+  background:var(--brand-900);box-shadow:var(--shadow-sm);
+  transition:transform .3s,box-shadow .3s;
+}
+.gal figure:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.gal figure:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.3,1)}
+.gal figure:hover img{transform:scale(1.05)}
+
+/* Named cells, each shaped like the picture that goes in it */
+.g-pupil{grid-area:pupil}
+.g-pupil img{object-position:center 22%}
+.g-bus{grid-area:bus}
+.g-poster{grid-area:poster}
+.g-brand{grid-area:brand}
+
+/* Printed posters are never cropped — they sit whole on the green */
+.gal .is-poster img{object-fit:contain;padding:12px 12px 30px;transform:none}
+.gal .is-poster:hover img{transform:none}
+
+/* Zoom affordance */
+.gal figure::after{
+  content:"⤢";position:absolute;top:9px;right:9px;width:27px;height:27px;border-radius:50%;
+  background:rgba(255,255,255,.94);color:var(--brand-800);display:grid;place-items:center;
+  font-size:.78rem;font-weight:700;opacity:0;transform:scale(.75);transition:.25s;
+}
+.gal figure:hover::after,.gal figure:focus-visible::after{opacity:1;transform:none}
+
+/* Captions stay readable without having to hover, and only shade the bottom strip */
+.gal figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 13px 10px;color:#fff;
+  font-size:.83rem;font-weight:600;line-height:1.35;
+  background:linear-gradient(transparent,rgba(7,45,24,.82));
+}
 .gal figure.hide{display:none}
+
+@media (max-width:1279px){.gal{grid-auto-rows:220px}}
+@media (max-width:640px){
+  .gal{grid-template-columns:1fr;grid-template-areas:none;grid-auto-rows:auto;gap:10px}
+  .gal figure{grid-area:auto}
+  .g-pupil{aspect-ratio:4/5}
+  .g-bus{aspect-ratio:16/9}
+  .gal .is-poster{aspect-ratio:5/4}
+}
 
 .lightbox{position:fixed;inset:0;background:rgba(10,61,32,.94);display:grid;place-items:center;padding:24px;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
 .lightbox.open{opacity:1;pointer-events:auto}
@@ -558,7 +614,14 @@ section[id]{scroll-margin-top:84px}
 }
 .shell-main{min-width:0}
 .rail{display:grid;gap:12px;align-content:start;min-width:0}
-.rail--left{position:sticky;top:84px}
+.rail--left{
+  position:sticky;top:84px;
+  max-height:calc(100vh - 96px);overflow-y:auto;overscroll-behavior:contain;
+  padding-right:4px;scrollbar-width:thin;scrollbar-color:var(--brand-300) transparent;
+}
+.rail--left::-webkit-scrollbar{width:6px}
+.rail--left::-webkit-scrollbar-thumb{background:var(--brand-300);border-radius:99px}
+.rail--left::-webkit-scrollbar-track{background:transparent}
 
 @media (max-width:1279px){
   .shell{grid-template-columns:minmax(0,1fr) 300px}
@@ -598,6 +661,34 @@ section[id]{scroll-margin-top:84px}
 .railnav a{display:block;padding:7px 10px;border-radius:8px;font-size:.86rem;font-weight:600;color:var(--ink)}
 .railnav a:hover{background:var(--brand-100);color:var(--brand-700)}
 .railnav a.active{background:var(--brand);color:#fff}
+
+/* ---------- Left-rail announcements board ---------- */
+.side--ann h4{display:flex;align-items:center;gap:7px}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;
+  box-shadow:0 0 0 0 rgba(240,135,58,.55);animation:livepulse 2.4s ease-out infinite;
+}
+@keyframes livepulse{
+  70%{box-shadow:0 0 0 7px rgba(240,135,58,0)}
+  100%{box-shadow:0 0 0 0 rgba(240,135,58,0)}
+}
+@media (prefers-reduced-motion:reduce){.live-dot{animation:none}}
+.side .annlist{list-style:none;display:block;margin:0;padding:0}
+.side .annlist li{display:block;padding:11px 0;border-bottom:1px dashed var(--line);font-size:inherit;gap:0}
+.side .annlist li:first-child{padding-top:0}
+.side .annlist li:last-child{border-bottom:0;padding-bottom:0}
+.anntag{
+  display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--brand);background:var(--brand-100);padding:3px 8px;border-radius:var(--r-pill);margin-bottom:6px;
+}
+.anntag--gold{color:var(--gold-600);background:var(--gold-100)}
+.annlist h5{margin:0 0 3px;font-family:var(--ff-body);font-size:.85rem;line-height:1.35;font-weight:700}
+.annlist h5 a{color:var(--ink);display:block}
+.annlist li:hover h5 a{color:var(--brand-700)}
+.annlist p{margin:0;font-size:.76rem;line-height:1.45;color:var(--muted)}
+.ann-all{display:flex;align-items:center;gap:6px;margin-top:13px;font-size:.78rem;font-weight:700;color:var(--brand-700)}
+.ann-all:hover{color:var(--gold-600)}
+
 
 /* Full-bleed sections keep their own inner wrap */
 .hero .wrap,.stats .wrap,.cta .wrap,.page-hero .wrap{max-width:1660px}
@@ -646,14 +737,13 @@ section[id]{scroll-margin-top:84px}
   .promo--band{grid-template-columns:auto minmax(0,1fr);row-gap:10px}
   .promo--band .btn{grid-column:1/-1;width:100%}
 }
-.promo--tall{display:flex;flex-direction:column;gap:11px;min-height:500px}
+.promo--tall{display:flex;flex-direction:column;gap:11px}
 .promo--tall ol{margin:0;padding:0;list-style:none;display:grid;gap:11px;flex:1;align-content:start}
 .promo--tall li{display:flex;gap:9px;font-size:.83rem;line-height:1.45;color:#e3f4e9}
 .promo--tall .n{flex:none;width:23px;height:23px;border-radius:50%;background:var(--gold);color:#331200;display:grid;place-items:center;font-size:.68rem;font-weight:800}
 .promo--tall p{color:#e3f4e9}
 .promo--line .promo--tall li,.promo--line p{color:var(--muted)}
 .promo h4 span[aria-hidden]{margin-right:5px}
-@media (max-width:940px){.promo--tall{min-height:0}}
 
 /* Full-width row inside the shell (spans left rail + content + right rail) */
 .shell>.full{grid-column:1/-1;border-top:1px solid var(--line);margin-top:4px}
