@@ -1,0 +1,17 @@
+# OS cruft
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local build output of the Pages workflow
+_site/
+
+# Internal working document, not part of the published site
+Regina-Pacis-Academy-website-content-form.docx
