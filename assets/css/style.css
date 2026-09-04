@@ -135,10 +135,13 @@ p{margin:0 0 1.1em}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 @media (max-width:1100px){
+  /* backdrop-filter would make the header a containing block for the
+     fixed menu panel below, trapping it inside the header strip */
+  .site-header{backdrop-filter:none;background:#fff}
   .burger{display:flex}
   .nav-cta .btn{display:none}
   .menu{
-    position:fixed;inset:0 0 0 auto;width:min(340px,86vw);background:#fff;
+    position:fixed;inset:0 0 0 auto;z-index:120;width:min(340px,86vw);background:#fff;
     flex-direction:column;align-items:stretch;gap:2px;padding:96px 20px 30px;
     box-shadow:var(--shadow-lg);transform:translateX(101%);transition:transform .35s cubic-bezier(.2,.8,.3,1);
     overflow-y:auto;
@@ -192,6 +195,8 @@ p{margin:0 0 1.1em}
 /* ---------- Page hero (interior) ---------- */
 .page-hero{position:relative;background:var(--brand-800);color:#fff;isolation:isolate;overflow:hidden}
 .page-hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--bgimg,url("../img/campus.svg"));background-size:cover;background-position:center;opacity:.42}
+.page-hero--graduation::before{background-image:url("../img/graduation.svg")}
+.page-hero--welcome::before{background-image:url("../img/welcome.svg")}
 .page-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(10,61,32,.95),rgba(20,122,61,.74))}
 .page-hero .wrap{padding-block:clamp(26px,3.4vw,44px)}
 .page-hero h1{color:#fff;margin-bottom:12px}

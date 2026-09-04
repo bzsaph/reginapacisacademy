@@ -15,3 +15,6 @@ _site/
 
 # Internal working document, not part of the published site
 Regina-Pacis-Academy-website-content-form.docx
+
+# Word lock files
+~$*
