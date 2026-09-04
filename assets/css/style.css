@@ -44,7 +44,7 @@ body{
   font-family:var(--ff-body);font-size:16px;line-height:1.62;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-img,svg{max-width:100%;display:block}
+img,svg{max-width:100%;height:auto;display:block}
 a{color:var(--brand);text-decoration:none}
 a:hover{color:var(--brand-700)}
 ul{margin:0;padding:0}
