@@ -16,11 +16,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  # Kept apart from the deploy job on purpose. The deploy job is gated on the
+  # github-pages environment, which does not exist until Pages is switched on,
+  # so the step that switches it on has to run in a job without that gate.
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,7 +28,6 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
-          # Turns Pages on for this repository the first time the workflow runs.
           enablement: true
 
       - name: Assemble site
@@ -41,6 +40,13 @@ jobs:
         with:
           path: _site
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
